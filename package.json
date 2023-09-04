@@ -1,0 +1,131 @@
+{
+  "name": "quick-find",
+  "displayName": "Quick Find And Jump",
+  "description": "Quickly find and jump, like default Find without the need to press Escape to exit, easy to jump to next/previous match",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.81.0"
+  },
+  "icon": "icon.png",
+  "publisher": "soata",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soata/quick-find"
+  },
+  "bugs": {
+    "url": "https://github.com/soata/quick-find/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "quick",
+    "find",
+    "jump",
+    "word",
+    "fast",
+    "goto",
+    "keyboard",
+    "move",
+    "navigation"
+  ],
+  "activationEvents": [ ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "quickFind.find",
+        "title": "Quick Find And Jump"
+      }
+    ],
+    "keybindings": [
+      {
+        "key": "ctrl+[BracketLeft]",
+        "mac": "cmd+[BracketLeft]",
+        "command": "quickFind.find"
+      },
+      {
+        "key": "tab",
+        "when": "quickFind.isActive",
+        "command": "quickFind.next"
+      },
+      {
+        "key": "shift+tab",
+        "when": "quickFind.isActive",
+        "command": "quickFind.prev"
+      },
+      {
+        "key": "ctrl+n",
+        "mac": "cmd+n",
+        "when": "quickFind.isActive",
+        "command": "quickFind.next"
+      },
+      {
+        "key": "shift+ctrl+n",
+        "mac": "shift+cmd+n",
+        "when": "quickFind.isActive",
+        "command": "quickFind.prev"
+      },
+      {
+        "key": "down",
+        "when": "quickFind.isActive",
+        "command": "quickFind.next"
+      },
+      {
+        "key": "up",
+        "when": "quickFind.isActive",
+        "command": "quickFind.prev"
+      },
+      {
+        "key": "ctrl+down",
+        "mac": "cmd+down",
+        "when": "quickFind.isActive",
+        "command": "quickFind.goBottom"
+      },
+      {
+        "key": "ctrl+up",
+        "mac": "cmd+up",
+        "when": "quickFind.isActive",
+        "command": "quickFind.goTop"
+      },
+      {
+        "key": "right",
+        "when": "quickFind.isActive",
+        "command": "quickFind.hideAndRight"
+      },
+      {
+        "key": "left",
+        "when": "quickFind.isActive",
+        "command": "quickFind.hideAndLeft"
+      }
+    ],
+    "configuration": {
+      "title": "Quick Find And Jump configuration",
+      "properties": {
+        "quickFind.ignoreCase": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to ignore case when performing quick find"
+        },
+        "quickFind.smartCase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to use smartcase when performing quick find"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.81.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.3"
+  }
+}
